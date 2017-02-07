@@ -46,7 +46,5 @@ class Command(BaseCommand):
                 week_schedule[c.group_name] = schedule
             if not SchoolSchedule.objects.filter(schedule=week_schedule).exists():
                 SchoolSchedule.objects.create(schedule=week_schedule)
-            with open('data.json', 'a') as f:
-                f.write(os.linesep)
-                json.dump(week_schedule, f)
-                f.write(os.linesep)
+
+        print("Population done")
