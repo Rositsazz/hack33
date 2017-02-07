@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from hack33.users.models import Hour, CourseClass, Students
+from hack33.users.models import Hour, CourseClass, Students, SchoolSchedule
 from math import ceil
 from random import randint
 import json
@@ -44,6 +44,8 @@ class Command(BaseCommand):
                             course_hours.pop(indx)
                 # print(schedule)
                 week_schedule[c.group_name] = schedule
+            if not SchoolSchedule.objects.filter(schedule=week_schedule).exists():
+                SchoolSchedule.objects.create(schedule=week_schedule)
             with open('data.json', 'a') as f:
                 f.write(os.linesep)
                 json.dump(week_schedule, f)

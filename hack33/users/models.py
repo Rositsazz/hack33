@@ -7,6 +7,8 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from jsonfield import JSONField
+
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -91,3 +93,6 @@ class CourseClass(models.Model):
 class Hour(models.Model):
     room = models.ForeignKey(Classroom, blank=True, null=True)
     course_class = models.ForeignKey(CourseClass)
+
+class SchoolSchedule(models.Model):
+    schedule = JSONField()

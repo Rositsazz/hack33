@@ -6,8 +6,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from .models import (User, Course, Classroom, Teacher, Students, CourseClass,
-                     Hour)
+                     Hour, SchoolSchedule)
 
+@admin.register(SchoolSchedule)
+class SchoolScheduleAdmin(admin.ModelAdmin):
+    list_display = ['id']
 
 @admin.register(Hour)
 class HourAdmin(admin.ModelAdmin):
