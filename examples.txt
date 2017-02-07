@@ -1,0 +1,6 @@
+{'friday': ['English', 'Maths', 'Literature', 'History', 'Geography', 'English'], 
+'thur': ['English', 'Maths', 'Literature', 'History', 'Geography', 'English'],
+'wedn': ['English', 'Maths', 'Literature', 'History'],
+'tuesday': ['English', 'Maths', 'Literature'],
+'monday': ['English', 'Maths']}
+================================================================================

@@ -5,7 +5,32 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models import (User, Course, Classroom, Teacher, Students, CourseClass,
+                     Hour)
+
+@admin.register(Hour)
+class HourAdmin(admin.ModelAdmin):
+    list_display = ['id', 'course_class', 'room']
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+
+@admin.register(Students)
+class StudentsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'group_name', 'number']
+
+@admin.register(CourseClass)
+class CourseClassAdmin(admin.ModelAdmin):
+    list_display = ['id', 'course', 'students', 'teacher', 'hours']
+
+@admin.register(Classroom)
+class ClassroomAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'room_type']
 
 
 class MyUserChangeForm(UserChangeForm):

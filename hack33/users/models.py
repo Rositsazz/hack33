@@ -20,3 +20,70 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
+
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Students(models.Model):
+    group_name = models.CharField(max_length=255)
+    number = models.IntegerField(default=0, blank=False, null=False)
+
+    def __str__(self):
+        return self.group_name
+
+class Classroom(models.Model):
+    CLASS_ROOM = 0
+    SPORT = 1
+    READING = 2
+    COMPUTER = 3
+    LABORATORY = 4
+
+    ROOM_CHOICE = (
+        (CLASS_ROOM, 'class_room'),
+        (SPORT, 'sport'),
+        (READING, 'reading'),
+        (COMPUTER, 'computer'),
+        (LABORATORY, 'laboratory'),
+    )
+
+    name = models.CharField(max_length=255)
+    number_of_seats = models.IntegerField(default=0, blank=False, null=False)
+    room_type = models.SmallIntegerField(choices=ROOM_CHOICE, default=CLASS_ROOM)
+
+class Course(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class CourseClass(models.Model):
+    CLASS_ROOM = 0
+    SPORT = 1
+    READING = 2
+    COMPUTER = 3
+    LABORATORY = 4
+
+    ROOM_CHOICE = (
+        (CLASS_ROOM, 'class_room'),
+        (SPORT, 'sport'),
+        (READING, 'reading'),
+        (COMPUTER, 'computer'),
+        (LABORATORY, 'laboratory'),
+    )
+    course = models.ForeignKey(Course)
+    teacher = models.ForeignKey(Teacher)
+    students = models.ForeignKey(Students)
+    course_type = models.SmallIntegerField(choices=ROOM_CHOICE, default=CLASS_ROOM)
+    hours = models.IntegerField(default=0, blank=False, null=False)
+
+    def __str__(self):
+        return "{} - {}".format(self.course.name, self.students.group_name)
+
+class Hour(models.Model):
+    room = models.ForeignKey(Classroom, blank=True, null=True)
+    course_class = models.ForeignKey(CourseClass)

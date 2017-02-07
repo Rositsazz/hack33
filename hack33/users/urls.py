@@ -12,6 +12,11 @@ urlpatterns = [
         name='list'
     ),
     url(
+        regex=r'^profile/$',
+        view=views.ProfileView.as_view(),
+        name='profile'
+    ),
+    url(
         regex=r'^~redirect/$',
         view=views.UserRedirectView.as_view(),
         name='redirect'
