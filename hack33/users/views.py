@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
 from math import ceil
 
+
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 

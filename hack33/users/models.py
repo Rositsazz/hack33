@@ -36,6 +36,7 @@ class Students(models.Model):
     def __str__(self):
         return self.group_name
 
+
 class Classroom(models.Model):
     CLASS_ROOM = 0
     SPORT = 1
@@ -55,11 +56,13 @@ class Classroom(models.Model):
     number_of_seats = models.IntegerField(default=0, blank=False, null=False)
     room_type = models.SmallIntegerField(choices=ROOM_CHOICE, default=CLASS_ROOM)
 
+
 class Course(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
 
 class CourseClass(models.Model):
     CLASS_ROOM = 0
@@ -83,6 +86,7 @@ class CourseClass(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.course.name, self.students.group_name)
+
 
 class Hour(models.Model):
     room = models.ForeignKey(Classroom, blank=True, null=True)
