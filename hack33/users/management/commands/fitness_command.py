@@ -1,20 +1,13 @@
+import ast
+
 from django.core.management.base import BaseCommand
 
-from hack33.users.models import (Hour, CourseClass, Students, SchoolSchedule,
-                                 Teacher)
+from hack33.users.models import SchoolSchedule
 from hack33.users.helpers.fitness import (is_any_empty_day,
                                           more_than_7_hours,
                                           give_rating_by_arrangement,
                                           less_than_2_hours,
-                                          check_teachers_schedule,
-                                          get_course_indxes_by_day,
-                                          check_for_conflixes,
-                                          get_day_conflixes)
-import json
-import os
-import ast
-from math import ceil
-
+                                          check_teachers_schedule)
 
 WEEK_DAYS = 5
 TEACHER_CLASSES_POINTS = 1
@@ -32,16 +25,6 @@ class Command(BaseCommand):
         for s in all_schedules:
             schedule = ast.literal_eval(str(s))
             for c, week_schedule in schedule.items():
-                students = Students.objects.get(group_name=c)
-                course_hours = list(Hour.objects.filter(course_class__students=students).all())
-                class_hours = len(course_hours)
-                monday = week_schedule['monday']
-                tuesday = week_schedule['tuesday']
-                wednesday = week_schedule['wednesday']
-                thursday = week_schedule['thursday']
-                friday = week_schedule['friday']
-                hours_per_day = ceil(class_hours / WEEK_DAYS)
-
                 if is_any_empty_day(week_schedule):
                     SchoolSchedule.objects.filter(id=s.id).delete()
                     break

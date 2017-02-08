@@ -1,11 +1,5 @@
-import json
-import os
 import ast
-from math import ceil
-from hack33.users.models import (Hour,
-                                 CourseClass,
-                                 Students,
-                                 SchoolSchedule,
+from hack33.users.models import (CourseClass,
                                  Teacher)
 
 POINTS = 5
@@ -104,5 +98,5 @@ def get_day_conflixes(teacher_classes, day):
         for i in hours:
             res.append(i[1])
     if len(res) == len(set(res)):
-        return 1 # no conflixes
-    return 0 # a conflix appeared
+        return 1  # no conflixes
+    return 0  # a conflix appeared
