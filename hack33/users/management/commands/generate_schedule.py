@@ -60,7 +60,7 @@ class Command(BaseCommand):
         week_schedule = {}
 
         classes = Students.objects.all()
-        for i in range(200):
+        for i in range(1000):
             print("Iteration")
             for c in classes:
                 schedule = {
