@@ -1,8 +1,8 @@
+from random import randint
+
 from django.core.management.base import BaseCommand
 
 from hack33.users.models import CourseClass, Students, SchoolSchedule
-# from math import ceil
-from random import randint
 
 WEEK_DAYS = 5
 
@@ -16,7 +16,7 @@ class Command(BaseCommand):
         week_schedule = {}
 
         classes = Students.objects.all()
-        for i in range(1000):
+        for i in range(3000):
             print("Iteration")
             for c in classes:
                 schedule = {

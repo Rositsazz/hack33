@@ -14,7 +14,7 @@ TEACHER_CLASSES_POINTS = 1
 
 
 class Command(BaseCommand):
-    help = "Fitness fucntion"
+    help = "Fitness function"
 
     def handle(self, **options):
         print("Fitness function on schedule population ...\n")
@@ -41,17 +41,19 @@ class Command(BaseCommand):
         all_schedules = SchoolSchedule.objects.all()
         for s in all_schedules:
             schedule = ast.literal_eval(str(s))
+            s.rate = 0
             # rating by arrangement
             rating = give_rating_by_arrangement(schedule)
             if rating != 0:
-                a = SchoolSchedule.objects.get(id=s.id)
-                a.rate = rating/100
-                a.save()
+                # a = SchoolSchedule.objects.get(id=s.id)
+                # a.rate = rating/100
+                s.rate = rating / 100
+                s.save()
 
             # rating by teacher conflixes
             rating_by_teacher_conflixes = check_teachers_schedule(s)
-            f = SchoolSchedule.objects.get(id=s.id)
-            f.rate += rating_by_teacher_conflixes/100
-            f.save()
+            # f = SchoolSchedule.objects.get(id=s.id)
+            s.rate += rating_by_teacher_conflixes/100
+            s.save()
         all_schedules = SchoolSchedule.objects.all()
         print(all_schedules.count())
