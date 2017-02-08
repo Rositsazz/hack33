@@ -8,9 +8,11 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from .models import (User, Course, Classroom, Teacher, Students, CourseClass,
                      Hour, SchoolSchedule)
 
+
 @admin.register(SchoolSchedule)
 class SchoolScheduleAdmin(admin.ModelAdmin):
     list_display = ['id']
+
 
 @admin.register(Hour)
 class HourAdmin(admin.ModelAdmin):

@@ -1,12 +1,11 @@
 from django.core.management.base import BaseCommand
 
-from hack33.users.models import Hour, CourseClass, Students, SchoolSchedule
-from math import ceil
+from hack33.users.models import CourseClass, Students, SchoolSchedule
+# from math import ceil
 from random import randint
-import json
-import os
 
 WEEK_DAYS = 5
+
 
 class Command(BaseCommand):
     help = "Generate schedule per each class"
@@ -29,7 +28,7 @@ class Command(BaseCommand):
                 }
                 course_classes = CourseClass.objects.filter(students=c).all()
                 class_hours = sum([i.hours for i in course_classes])
-                hours_per_day = ceil(class_hours / WEEK_DAYS)
+                # hours_per_day = ceil(class_hours / WEEK_DAYS)
                 course_hours = [[c.course.name, c.hours] for c in course_classes]
                 print("Class: {}, Hours per week: {}".format(c.group_name, class_hours))
                 for i in range(class_hours):

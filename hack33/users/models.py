@@ -95,7 +95,8 @@ class Hour(models.Model):
     room = models.ForeignKey(Classroom, blank=True, null=True)
     course_class = models.ForeignKey(CourseClass)
 
+
 class SchoolSchedule(models.Model):
     schedule = JSONField()
     rate = models.FloatField(
-        validators = [MinValueValidator(0.0), MaxValueValidator(1.0)], default=0)
+        validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], default=0)
