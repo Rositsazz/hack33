@@ -95,6 +95,9 @@ class Hour(models.Model):
     room = models.ForeignKey(Classroom, blank=True, null=True)
     course_class = models.ForeignKey(CourseClass)
 
+    def __str__(self):
+        return "{}".format(self.course_class)
+
 
 class SchoolSchedule(models.Model):
     schedule = JSONField()
