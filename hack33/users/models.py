@@ -8,6 +8,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from .query import CourseClassQuerySet
 from jsonfield import JSONField
 
 
@@ -86,6 +87,8 @@ class CourseClass(models.Model):
     students = models.ForeignKey(Students)
     course_type = models.SmallIntegerField(choices=ROOM_CHOICE, default=CLASS_ROOM)
     hours = models.IntegerField(default=0, blank=False, null=False)
+
+    objects = CourseClassQuerySet.as_manager()
 
     def __str__(self):
         return "{} - {}".format(self.course.name, self.students.group_name)
