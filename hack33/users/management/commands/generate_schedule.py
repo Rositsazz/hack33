@@ -46,4 +46,4 @@ class Command(BaseCommand):
             if not SchoolSchedule.objects.filter(schedule=week_schedule).exists():
                 SchoolSchedule.objects.create(schedule=week_schedule)
 
-            print("Population done")
+        print("Population done")
