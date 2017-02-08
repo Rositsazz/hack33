@@ -1,30 +1,25 @@
 {% extends "base.html" %}
 {% load key %}
 {% block content %}
-{{schedule}}
+
 {% for k in schedule.schedule %}
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <table class="table table-hover checkins-table" cellspacing="0">
         <caption>{{ k }}</caption>
         <colgroup>
-          <col style="background-color:#5b9fc2">
-          <col style="background-color:#db4d26">
-          <col style="background-color:#dd9662">
-          <col style="background-color:#31b783">
-          <col style="background-color:#e7de7e">
+          <col style="background-color:#e9631a">
+          <col style="background-color:#cb9e4380">
+          <col style="background-color:#7f95a566">
+          <col style="background-color:#cb9e4380">
+          <col style="background-color:#7f95a566">
+          <col style="background-color:#cb9e4380">
+          <col style="background-color:#7f95a566">
+          <col style="background-color:#cb9e4380">
         </colgroup>
-        <tr>
-          <td>Monday</td>
-          <td>Thuesday</td>
-          <td>Wednesday</td>
-          <td>Thursday</td>
-          <td>Friday</td>
-          <td></td>
-          <td></td>
-        </tr>
         {% for day in schedule.schedule|key:k %}
           <tr>
+            <td style="text-transform: capitalize;">{{day}}</td>
             {% for course in schedule.schedule|key:k|key:day %}
               <td>{{course}}</td>
             {% endfor %}
