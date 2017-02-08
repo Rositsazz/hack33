@@ -103,3 +103,9 @@ class SchoolSchedule(models.Model):
     schedule = JSONField()
     rate = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], default=0)
+
+    def __str__(self):
+        return str(self.schedule)
+
+    def __repr__(self):
+        return str(self.schedule)
