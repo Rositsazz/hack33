@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load key %}
+{% load chart_tags %}
+{% block content %}
+{% chart %}
+       &chbh=a
+       &chs=500x300
+       &cht=bvs
+       &chco=FFC6A5|F7931E|7f5a92|46b08a|7994f2
+       &chxt=x
+       &chxl=0:|0-0.1|0.1-0.2|0.2-0.3|0.3-0.4|0.4-0.5|1
+       &chd=t:{{rate_lt_10.count}}, {{rate_lt_20.count}}, {{rate_lt_30.count}}, {{rate_lt_40.count}} ,{{rate_lt_50.count}}, {{rate_gt_50.count}}
+       &chtt=Schedule+Results
+{% endchart %}
+
+{% endblock %}

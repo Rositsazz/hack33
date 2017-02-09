@@ -257,6 +257,8 @@ else:
     CELERY_RESULT_BACKEND = BROKER_URL
 ########## END CELERY
 
+# Django chart_tools
+INSTALLED_APPS += ('chart_tools',)
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'

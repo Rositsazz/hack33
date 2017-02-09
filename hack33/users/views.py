@@ -10,6 +10,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User, SchoolSchedule
 
 
+class ScheduleChartView(TemplateView):
+    template_name = 'schedule_chart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['schedule'] = SchoolSchedule.objects.order_by('-rate')
+        context['rate_lt_10'] = SchoolSchedule.objects.filter(rate__lt=0.1).all()
+        context['rate_lt_20'] = SchoolSchedule.objects.filter(rate__gt=0.1, rate__lt=0.2)
+        context['rate_lt_30'] = SchoolSchedule.objects.filter(rate__gt=0.2, rate__lt=0.3)
+        context['rate_lt_40'] = SchoolSchedule.objects.filter(rate__gt=0.3, rate__lt=0.4)
+        context['rate_lt_50'] = SchoolSchedule.objects.filter(rate__gt=0.4, rate__lt=0.5)
+        context['rate_gt_50'] = SchoolSchedule.objects.filter(rate__gt=0.5)
+        return context
+
+
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 

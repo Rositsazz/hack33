@@ -17,6 +17,11 @@ urlpatterns = [
         name='profile'
     ),
     url(
+        regex=r'^schedule-chart/$',
+        view=views.ScheduleChartView.as_view(),
+        name='schedule-chart'
+    ),
+    url(
         regex=r'^~redirect/$',
         view=views.UserRedirectView.as_view(),
         name='redirect'
