@@ -45,14 +45,11 @@ class Command(BaseCommand):
             # rating by arrangement
             rating = give_rating_by_arrangement(schedule)
             if rating != 0:
-                # a = SchoolSchedule.objects.get(id=s.id)
-                # a.rate = rating/100
                 s.rate = rating / 100
                 s.save()
 
             # rating by teacher conflixes
             rating_by_teacher_conflixes = check_teachers_schedule(s)
-            # f = SchoolSchedule.objects.get(id=s.id)
             s.rate += rating_by_teacher_conflixes/100
             s.save()
         all_schedules = SchoolSchedule.objects.all()

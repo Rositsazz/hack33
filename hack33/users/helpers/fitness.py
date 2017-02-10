@@ -67,7 +67,7 @@ def check_teachers_schedule(schedule):
                 "thursday": get_course_indxes_by_day("thursday", schedule, class_name, course_name),
                 "friday": get_course_indxes_by_day("friday", schedule, class_name, course_name)
             }
-        result += check_for_conflixes(classes)
+        result += check_for_conflicts(classes)
     return result
 
 
@@ -81,14 +81,14 @@ def get_course_indxes_by_day(day, schedule, class_name, course_name):
     return result
 
 
-def check_for_conflixes(teacher_classes):
+def check_for_conflicts(teacher_classes):
     res = 0
     for i in ["monday", "tuesday", "wednesday", "thursday", "friday"]:
-        res += get_day_conflixes(teacher_classes, i)
+        res += get_day_conflicts(teacher_classes, i)
     return res
 
 
-def get_day_conflixes(teacher_classes, day):
+def get_day_conflicts(teacher_classes, day):
     days = []
     for c, d in teacher_classes.items():
         days.append((c, teacher_classes[c][day]))
@@ -98,5 +98,5 @@ def get_day_conflixes(teacher_classes, day):
         for i in hours:
             res.append(i[1])
     if len(res) == len(set(res)):
-        return 1  # no conflixes
-    return 0  # a conflix appeared
+        return 1  # no conflicts
+    return 0  # a conflict appeared
