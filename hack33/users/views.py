@@ -4,10 +4,28 @@ from __future__ import absolute_import, unicode_literals
 from django.core.urlresolvers import reverse
 from django.views.generic import (DetailView, ListView, RedirectView,
                                   UpdateView, TemplateView)
+from django.views.generic.edit import FormView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User, SchoolSchedule
+from .forms import EditProfileForm
+
+
+class EditProfileView(FormView):
+    template_name = 'edit_profile.html'
+    form_class = EditProfileForm
+    # success_url = '/thanks/'
+
+    def get_success_url(self):
+        return reverse('users:schedule-chart')
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        import ipdb; ipdb.set_trace()
+        return super(EditProfileView, self).form_valid(form)
 
 
 class ScheduleChartView(TemplateView):

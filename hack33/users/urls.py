@@ -22,6 +22,11 @@ urlpatterns = [
         name='schedule-chart'
     ),
     url(
+        regex=r'^edit/$',
+        view=views.EditProfileView.as_view(),
+        name='edit'
+    ),
+    url(
         regex=r'^~redirect/$',
         view=views.UserRedirectView.as_view(),
         name='redirect'
