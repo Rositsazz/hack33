@@ -3,10 +3,8 @@ import ast
 from django.core.management.base import BaseCommand
 
 from hack33.users.models import SchoolSchedule
-from hack33.users.helpers.fitness import (is_any_empty_day,
-                                          more_than_7_hours,
+from hack33.users.helpers.fitness import (Fitness,
                                           give_rating_by_arrangement,
-                                          less_than_2_hours,
                                           check_teachers_schedule)
 
 WEEK_DAYS = 5
@@ -25,15 +23,16 @@ class Command(BaseCommand):
         for s in all_schedules:
             schedule = ast.literal_eval(str(s))
             for c, week_schedule in schedule.items():
-                if is_any_empty_day(week_schedule):
+                fitness_obj = Fitness(week_schedule)
+                if fitness_obj.is_any_empty_day():
                     SchoolSchedule.objects.filter(id=s.id).delete()
                     break
 
-                if more_than_7_hours(week_schedule):
+                if fitness_obj.more_than_7_hours():
                     SchoolSchedule.objects.filter(id=s.id).delete()
                     break
 
-                if less_than_2_hours(week_schedule):
+                if fitness_obj.less_than_2_hours():
                     SchoolSchedule.objects.filter(id=s.id).delete()
                     break
 

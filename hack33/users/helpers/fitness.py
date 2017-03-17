@@ -5,25 +5,27 @@ from hack33.users.models import (CourseClass,
 POINTS = 5
 
 
-def is_any_empty_day(schedule):
-    for k, v in schedule.items():
-        if v == []:
-            return True
-    return False
+class Fitness:
+    def __init__(self, schedule=None):
+        self.schedule = schedule
 
+    def is_any_empty_day(self):
+        for k, v in self.schedule.items():
+            if v == []:
+                return True
+        return False
 
-def more_than_7_hours(schedule):
-    for k, v in schedule.items():
-        if len(v) > 7:
-            return True
-    return False
+    def more_than_7_hours(self):
+        for k, v in self.schedule.items():
+            if len(v) > 7:
+                return True
+        return False
 
-
-def less_than_2_hours(schedule):
-    for k, v in schedule.items():
-        if len(v) < 2:
-            return True
-    return False
+    def less_than_2_hours(self):
+        for k, v in self.schedule.items():
+            if len(v) < 2:
+                return True
+        return False
 
 
 def get_class_rating(week_schedule):

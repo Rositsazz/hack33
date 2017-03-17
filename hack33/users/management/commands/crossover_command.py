@@ -1,4 +1,3 @@
-import ast
 from random import randint
 from math import ceil
 
@@ -35,7 +34,7 @@ From each parent get 2 week schedules\n""")
             parent_2_classes = list(parent1.schedule.keys())
             for j in range(len(parent_2_classes)):
                 current_class = parent_2_classes[j]
-                if not current_class in child_schedule:
+                if current_class not in child_schedule:
                     class_name = current_class
                     child_schedule[class_name] = parent2.schedule[class_name]
             print("Creating child...")
