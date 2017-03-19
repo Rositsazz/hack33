@@ -1,8 +1,6 @@
 from django import forms
-from django.forms import ModelForm
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from django.forms.utils import ErrorList
+
 
 INPUTS = {
     'text': forms.TextInput,
@@ -24,6 +22,7 @@ def w(input_type, value=None):
 
     attrs = {'placeholder': value}
     return element(attrs=attrs)
+
 
 class EditProfileForm(forms.Form):
     first_name = forms.CharField(label=_('Име'), widget=w('text', 'Име'))

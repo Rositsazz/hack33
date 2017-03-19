@@ -20,13 +20,6 @@ class EditProfileView(FormView):
     def get_success_url(self):
         return reverse('users:schedule-chart')
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # form.send_email()
-        import ipdb; ipdb.set_trace()
-        return super(EditProfileView, self).form_valid(form)
-
 
 class ScheduleChartView(TemplateView):
     template_name = 'schedule_chart.html'
