@@ -9,12 +9,12 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User, SchoolSchedule
-from .forms import EditProfileForm
+from .forms import EditTeacherProfileForm
 
 
 class EditProfileView(FormView):
     template_name = 'edit_profile.html'
-    form_class = EditProfileForm
+    form_class = EditTeacherProfileForm
     # success_url = '/thanks/'
 
     def get_success_url(self):

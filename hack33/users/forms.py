@@ -24,12 +24,13 @@ def w(input_type, value=None):
     return element(attrs=attrs)
 
 
-class EditProfileForm(forms.Form):
+class EditTeacherProfileForm(forms.Form):
     first_name = forms.CharField(label=_('Име'), widget=w('text', 'Име'))
     last_name = forms.CharField(label=_('Фамилия'), widget=w('text', 'Фамилия'))
-    github_account = forms.CharField(label=_('Github'), widget=w('text', 'Github'))
-    linkedin_account = forms.CharField(label=_('Linkedin'), widget=w('text', 'Linkedin'))
-    mac = forms.CharField(label=_('MAC'), widget=w('text', 'MAC'))
+    title = forms.CharField(label=_('Длъжност'), widget=w('text', 'Длъжност'))
+    # github_account = forms.CharField(label=_('Github'), widget=w('text', 'Github'))
+    # linkedin_account = forms.CharField(label=_('Linkedin'), widget=w('text', 'Linkedin'))
+    # mac = forms.CharField(label=_('MAC'), widget=w('text', 'MAC'))
     phone = forms.CharField(label=_('Телефонен номер'), widget=w('text', 'Телефонен номер'))
     # signature = forms.CharField(label=_('Linkedin'), widget=w('text', 'Linkedin'))
     skype = forms.CharField(label=_('Skype'), widget=w('text', 'Skype'))
